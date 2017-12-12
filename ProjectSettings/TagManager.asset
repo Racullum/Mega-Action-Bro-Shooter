@@ -15,6 +15,13 @@ TagManager:
   - Bullet6
   - Bullet7
   - Bullet8
+  - Bullet3
+  - PlayerSpawn
+  - GunSpawn
+  - Weapon
+  - Bullet9
+  - Bullet10
+  - Bullet11
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +31,7 @@ public class StandardEnemyCont : MonoBehaviour
         Debug.Log("Collision!");
         if (collision.gameObject.tag.Contains("Bullet"))
         {
-            --health;
+            health = health - collision.gameObject.GetComponent<BulletCont>().damage;
             if(health <= 0)
             {
                 gameObject.SetActive(false);
@@ -91,25 +91,7 @@ public class StandardEnemyCont : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*if(patroling)
-        {
-            patrol();
-        }
-       
-        RaycastHit2D hit = Physics2D.CircleCast(object_trans.position, .4f, 
-                                                object_trans.up * Mathf.Sign(object_trans.rotation.z), Mathf.Infinity, 256);
-        if(hit.collider != null)
-        {
-            shoot();
-            Debug.Log("We hit something");
-            if (!patroling)
-            {
-                
-                anim.SetBool("running", true);
-               // gameObject.GetComponent<AIPath>().canMove = true;
-                Debug.Log("Detected player");
-            }
-        }*/
+
         if (patroling)
         {
             patrol();
@@ -134,9 +116,6 @@ public class StandardEnemyCont : MonoBehaviour
 
        
         Debug.DrawRay(object_trans.position, object_trans.up);
-        /*RaycastHit2D hit = Physics2D.CircleCast(object_trans.position, .3f,
-                                                object_trans.up * Mathf.Sign(object_trans.rotation.z), Mathf.Infinity, 256);
-        */
         RaycastHit2D hit = Physics2D.CircleCast(object_trans.position, .3f,
                                                 object_trans.up, Mathf.Infinity, 256);
         if (hit.collider != null)

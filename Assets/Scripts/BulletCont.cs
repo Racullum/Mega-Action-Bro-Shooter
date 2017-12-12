@@ -2,21 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet8Cont : MonoBehaviour
-{
+public class BulletCont : MonoBehaviour {
+
     public GameObject bulletSpawn;
     private Rigidbody2D rb;
     private PlayerController pc;
+    public int damage = 1;
     // Use this for initialization
     void Start()
     {
         pc = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
-        
+
+    }
+
+    public int getDamage()
+    {
+        return damage;
     }
 
     public void startMovement(Vector2 vec)
     {
+        // The way the sprite is drawn means that it needs to rotate -90 degrees to line up with 
+        // Unity's 2d system
+        transform.Rotate(0, 0, -90);
         GetComponent<Rigidbody2D>().AddForce(vec);
     }
 
