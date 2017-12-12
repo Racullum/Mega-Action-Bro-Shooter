@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 212692406504417556}
   - component: {fileID: 61123141012771024}
   - component: {fileID: 114627830393285254}
+  - component: {fileID: 114619983877651650}
   m_Layer: 0
   m_Name: Weapon4
   m_TagString: Untagged
@@ -96,6 +97,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.09, y: 0.15}
   m_EdgeRadius: 0
+--- !u!114 &114619983877651650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798524329505804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a38c9bfe006e6443bc8b84127a285a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunNumber: 4
+  fireRate: 0.5
+  power: 50
 --- !u!114 &114627830393285254
 MonoBehaviour:
   m_ObjectHideFlags: 1
