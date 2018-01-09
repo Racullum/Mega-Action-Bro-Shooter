@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     public float speed = 1;
     public Camera cam;
+    
 
     private bool collided = false;
     private Vector2 lastPos;
@@ -17,7 +19,9 @@ public class PlayerController : MonoBehaviour
     public Transform playerSpawn;
 
     //HEALTH
-    public int health = 5;
+    public float max_health = 20;
+    private float current_health;
+    public Slider healthBar;
 
     //SHOOTING
     private int gun = 8;
@@ -33,7 +37,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         player = gameObject;
-   
+        current_health = max_health;
+        healthBar.value = calculateHealth();
         rb = player.GetComponent<Rigidbody2D>();
     }
 
@@ -43,7 +48,8 @@ public class PlayerController : MonoBehaviour
         player.SetActive(false);
         rb.transform.position = playerSpawn.position;
         //rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        health = 5;
+        current_health = max_health;
+        healthBar.value = calculateHealth();
         player.SetActive(true);
        // rb.constraints = RigidbodyConstraints2D.None;
     
@@ -88,12 +94,6 @@ public class PlayerController : MonoBehaviour
         rb.angularVelocity = 0;
     }
 
-    void shoot()
-    {
-       
-       
-   
-    }
 
  
 
@@ -102,9 +102,11 @@ public class PlayerController : MonoBehaviour
         collided = true;
         if (collision.gameObject.tag.Contains("Bullet"))
         {
-            --health;
-            if (health <= 0)
+            --current_health;
+            healthBar.value = calculateHealth();
+            if (current_health <= 0)
             {
+                current_health = 0;
                 respawn();
             }
 
@@ -127,11 +129,16 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Mouse isn't broken");
         }
         
-        shoot();
+    
         aim();
         move();
 
 
+    }
+
+    float calculateHealth()
+    {
+        return current_health / max_health;
     }
 
 

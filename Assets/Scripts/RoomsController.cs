@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class RoomsController : MonoBehaviour {
 
-
-    public GameObject enemy;
-    public Transform enemySpawn;
-
-    private Transform initialTransform;
-	// Use this for initialization
-	void Start () {
-        initialTransform = enemy.transform;
-	}
+    public int numberOfEnemies = 2;
+    public GameObject[] enemies;
+    public Transform[] enemySpawns;
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,19 +17,29 @@ public class RoomsController : MonoBehaviour {
     {
         if(collision.tag.Equals("Player"))
         {
-            enemy.GetComponent<StandardEnemyCont>().setPatroling(false);
-            enemy.GetComponent<StandardEnemyCont>().setCanShoot(true);
-            enemy.GetComponent<AIPath>().canMove = true;
+            for(int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].GetComponent<StandardEnemyCont>().setPatroling(false);
+                enemies[i].GetComponent<StandardEnemyCont>().setCanShoot(true);
+                enemies[i].GetComponent<AIPath>().canMove = true;
+            }
+
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        enemy.GetComponent<StandardEnemyCont>().setPatroling(true);
-        enemy.GetComponent<StandardEnemyCont>().setCanShoot(false);
-        enemy.GetComponent<AIPath>().canMove = false;
-        Debug.Log(initialTransform.position);
-        enemy.transform.position = enemySpawn.position;
-        enemy.transform.rotation = new Quaternion(0, 0, 0, 0);
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].GetComponent<StandardEnemyCont>().setPatroling(true);
+                enemies[i].GetComponent<StandardEnemyCont>().setCanShoot(false);
+                enemies[i].GetComponent<AIPath>().canMove = false;
+                enemies[i].transform.position = enemySpawns[i].position;
+                enemies[i].transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
+        }
+
     }
 }

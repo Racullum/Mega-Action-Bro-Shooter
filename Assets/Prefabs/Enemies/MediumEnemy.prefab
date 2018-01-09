@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 114028242640751114}
   - component: {fileID: 114377111885175564}
   - component: {fileID: 50185253713895310}
+  - component: {fileID: 82317534034277754}
   m_Layer: 11
   m_Name: MediumEnemy
   m_TagString: Untagged
@@ -147,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995038189543096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09908295, y: 0.6070001, z: 1.8310547}
+  m_LocalPosition: {x: 0.02, y: 0.219, z: 1.8310547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4646645937166058}
@@ -243,7 +244,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61686763443477848
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -256,7 +257,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.019163132, y: 0.056721568}
+  m_Offset: {x: 0.029372215, y: 0.00057542324}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -267,8 +268,88 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.61686707, y: 0.6874678}
+  m_Size: {x: 0.20853233, y: 0.20767426}
   m_EdgeRadius: 0
+--- !u!82 &82317534034277754
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1764290559393624}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95850596057156014
 Animator:
   serializedVersion: 3
@@ -337,9 +418,9 @@ MonoBehaviour:
   canSearch: 1
   canMove: 1
   speed: 0.7
-  rotationSpeed: 720
+  rotationSpeed: 1080
   slowdownDistance: 0.6
-  pickNextWaypointDist: 0.66
+  pickNextWaypointDist: 0.14
   endReachedDistance: 0.2
   alwaysDrawGizmos: 1
 --- !u!114 &114377111885175564
@@ -348,7 +429,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764290559393624}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a537d958aa5bb4f35b0d7b40d72278f2, type: 3}
   m_Name: 
@@ -367,11 +448,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0f1c33895d96b40bb7bd5aeb766f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 7
+  health: 4
   standardBullet: {fileID: 1592972683234584, guid: b7d61a21cd134c14f8214d743f048241,
     type: 2}
   bulletSpawn: {fileID: 1995038189543096}
   fireRate: 0.1
+  gun_shot: {fileID: 8300000, guid: bb82d7ecf54089241bdb05159da7f0b5, type: 3}
 --- !u!212 &212017356392401010
 SpriteRenderer:
   m_ObjectHideFlags: 1

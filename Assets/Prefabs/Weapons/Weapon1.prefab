@@ -111,6 +111,7 @@ MonoBehaviour:
   gunNumber: 1
   fireRate: 0.5
   power: 50
+  gun_shot: {fileID: 8300000, guid: c3a51f5f0ccbfec49a9119d9e577978e, type: 3}
 --- !u!114 &114959101416978246
 MonoBehaviour:
   m_ObjectHideFlags: 1

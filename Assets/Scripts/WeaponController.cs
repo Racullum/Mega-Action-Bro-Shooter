@@ -8,12 +8,15 @@ public class WeaponController : MonoBehaviour {
     private float lastShot = 0;
     public float fireRate = .1f;
     public float power = 100f;
+    private AudioSource source;
+    public AudioClip gun_shot;  
 
     private Transform bulletSpawn;
 
     // Use this for initialization
     void Start()
     {
+        source = GetComponent<AudioSource>();
         bulletSpawn = transform.Find("ProjectileSpawn");
     }
 
@@ -27,7 +30,7 @@ public class WeaponController : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0) && Time.time > lastShot)
         {
-
+            source.PlayOneShot(gun_shot);
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             lastShot = Time.time + fireRate;

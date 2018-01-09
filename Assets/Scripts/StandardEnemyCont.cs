@@ -25,11 +25,14 @@ public class StandardEnemyCont : MonoBehaviour
     private bool canShoot = false;
     private float lastShot = 0;
     public float fireRate = .5f;
+    private AudioSource source;
+    public AudioClip gun_shot;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision!");
-        if (collision.gameObject.tag.Contains("Bullet"))
+        Debug.Log(collision.gameObject.layer);
+        if (collision.gameObject.tag.Contains("Bullet") && collision.gameObject.layer.Equals(9))
         {
             health = health - collision.gameObject.GetComponent<BulletCont>().damage;
             if(health <= 0)
@@ -44,6 +47,7 @@ public class StandardEnemyCont : MonoBehaviour
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        source = GetComponent<AudioSource>();
         gameObject.GetComponent<AIPath>().canMove = false;
         object_trans = GetComponent<Transform>();
         rb = gameObject.GetComponent<Collider2D>().attachedRigidbody;
@@ -75,6 +79,7 @@ public class StandardEnemyCont : MonoBehaviour
             GameObject bullet = ObjectPooler.SharedInstance.getPooledObject(standardBullet.tag.ToString());
             if (bullet != null)
             {
+               source.PlayOneShot(gun_shot);
                 bullet.transform.position = bulletSpawn.transform.position;
                 bullet.transform.rotation = gameObject.transform.rotation;
                 bullet.transform.Rotate(bullet.transform.rotation.x, bullet.transform.rotation.y, (bullet.transform.rotation.z + 90f));
@@ -82,6 +87,8 @@ public class StandardEnemyCont : MonoBehaviour
                 bullet.SetActive(true);
                 bullet.layer = 10;
                 bullet.GetComponent<Rigidbody2D>().AddForce(bulletSpawn.transform.up * 50);
+                source.PlayOneShot(gun_shot);
+
             }
 
         }
